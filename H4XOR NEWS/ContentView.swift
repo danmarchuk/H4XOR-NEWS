@@ -9,13 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+        NavigationView {
+            // create a list that takes items from posts and puts them into the TextView
+            List(posts){ posts in
+                Text(posts.title)
+            }
+            .navigationTitle("H4XOR NEWS")
         }
-        .padding()
     }
 }
 
@@ -24,3 +24,11 @@ struct ContentView_Previews: PreviewProvider {
         ContentView()
     }
 }
+
+
+let posts = [
+    Post(id: "1", title: "Hello world"),
+    Post(id: "2", title: "Goodbye world"),
+    Post(id: "3", title: "See you world")
+]
+
