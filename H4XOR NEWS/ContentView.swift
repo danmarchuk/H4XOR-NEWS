@@ -8,13 +8,24 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @ObservedObject var networkManager = NetworkManager()
+    
     var body: some View {
         NavigationView {
             // create a list that takes items from posts and puts them into the TextView
-            List(posts){ posts in
-                Text(posts.title)
+            List(networkManager.posts){ post in
+                HStack {
+                    Text(String(post.points))
+                    Text(post.title)
+                    
+                }
+                
             }
             .navigationTitle("H4XOR NEWS")
+        }
+        .onAppear {
+            self.networkManager.fetchData()
         }
     }
 }
@@ -26,9 +37,9 @@ struct ContentView_Previews: PreviewProvider {
 }
 
 
-let posts = [
-    Post(id: "1", title: "Hello world"),
-    Post(id: "2", title: "Goodbye world"),
-    Post(id: "3", title: "See you world")
-]
+//let posts = [
+//    Post(id: "1", title: "Hello world"),
+//    Post(id: "2", title: "Goodbye world"),
+//    Post(id: "3", title: "See you world")
+//]
 
