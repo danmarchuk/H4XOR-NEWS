@@ -15,10 +15,13 @@ struct ContentView: View {
         NavigationView {
             // create a list that takes items from posts and puts them into the TextView
             List(networkManager.posts){ post in
-                HStack {
-                    Text(String(post.points))
-                    Text(post.title)
-                    
+                
+                NavigationLink(destination: DetailView(url: post.url)){
+                    HStack {
+                        Text(String(post.points))
+                        Text(post.title)
+                        
+                    }
                 }
                 
             }
